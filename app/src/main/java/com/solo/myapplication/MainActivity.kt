@@ -55,7 +55,11 @@ class MainActivity : AppCompatActivity() {
         isStarted = false
     }
 
-    private fun reset() {}
+    private fun reset() {
+        stop()
+        time = 0.0
+        binding.tvTime.text = getFormattedTime(time)
+    }
 
     private val updatedTime: BroadcastReceiver = object : BroadcastReceiver() {
         override fun onReceive(context: Context, intent: Intent) {
