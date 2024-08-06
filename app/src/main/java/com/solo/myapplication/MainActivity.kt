@@ -34,7 +34,11 @@ class MainActivity : AppCompatActivity() {
         }
 
         serviceIntent = Intent(applicationContext, StopWatchService::class.java)
-        registerReceiver(updatedTime, IntentFilter(StopWatchService.UPDATED_TIME))
+        registerReceiver(
+            updatedTime,
+            IntentFilter(StopWatchService.UPDATED_TIME),
+            RECEIVER_NOT_EXPORTED,
+        )
     }
 
     private fun startOrStop() {

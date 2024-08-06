@@ -29,6 +29,7 @@ class StopWatchService : Service() {
     private inner class StopWatchTimerTask(private var time: Double): TimerTask(){
         override fun run() {
             val intent = Intent(UPDATED_TIME)
+            intent.setPackage(packageName) //This is required for RECEIVER_NOT_EXPORTED
             time++
             intent.putExtra(CURRENT_TIME, time)
             sendBroadcast(intent)
