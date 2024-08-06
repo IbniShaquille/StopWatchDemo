@@ -60,8 +60,15 @@ class MainActivity : AppCompatActivity() {
     private val updatedTime: BroadcastReceiver = object : BroadcastReceiver() {
         override fun onReceive(context: Context, intent: Intent) {
             time = intent.getDoubleExtra(StopWatchService.CURRENT_TIME, 0.0)
-            binding.tvTime.text = time.toString()
+            binding.tvTime.text = getFormattedTime(time)
         }
+    }
 
+    private fun getFormattedTime(time: Double): String {
+        val timeInt = time.toInt()
+        val hours = timeInt % 86400 / 3600
+        val minutes = timeInt % 86400 % 3600 / 60
+        val seconds = timeInt % 86400 % 3600 % 60
+        return String.format("%02d:%02d:%02d", hours, minutes, seconds)
     }
 }
